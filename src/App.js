@@ -10,10 +10,17 @@ function Example() {
 
   if (error) return 'An error has occurred: ' + error.message;
 
+  // Process the data to extract all beers
+  const beers = [];
   console.log(data);
+  data.forEach(({ value }) => {
+    beers.push(...value);
+  })
+  console.log(beers);
+
   return (
     <div>
-      <h1>{data.length} Beers</h1>
+      <h1>{beers.length} Beers</h1>
     </div>
   );
 }
