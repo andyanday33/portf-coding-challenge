@@ -37,8 +37,7 @@ function BarGraph(props) {
 
   beers.forEach(beer => {
     const date = beer.first_brewed.split('/');
-    console.log(date);
-    if (date.length == 1) {
+    if (date.length === 1) {
       beer.first_brewed = `Jan ${date[0]}`;
     } else {
       beer.first_brewed = `${monthMap.get(date[0])} ${date[1]}`;
