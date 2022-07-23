@@ -49,12 +49,10 @@ function BarGraph(props) {
     // Find the new ABV
     if (processedData.has(newDate)) {
       const dateBar = processedData.get(newDate);
-      dateBar.beerCount++;
       dateBar.abv += beer.abv;
     } else {
       // Add the new date to the map
       processedData.set(newDate, {
-        beerCount: 1,
         abv: beer.abv,
       });
     }
