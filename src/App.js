@@ -121,7 +121,7 @@ function BarGraph(props) {
   return (
     <div>
       <section id="beer-graph">
-        <BeerResponsiveBar data={finalData}/>
+        {finalData.length > 0 && <BeerResponsiveBar data={finalData}/>}
       </section>
       <button onClick={() => changeData()}>B</button>
     </div>
