@@ -1,4 +1,4 @@
-import { ResponsiveBar } from '@nivo/bar'
+import { ResponsiveBar } from '@nivo/bar';
 
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
@@ -6,8 +6,6 @@ import { ResponsiveBar } from '@nivo/bar'
 // website examples showcase many properties,
 // you'll often use just a few of them.
 const ResponsiveBeerBar = ({ data }) => {
-    console.log('render');
-    
     return (
         <ResponsiveBar
             data={data}
@@ -55,7 +53,7 @@ const ResponsiveBeerBar = ({ data }) => {
             axisBottom={{
                 tickSize: 5,
                 tickPadding: 5,
-                tickRotation: 45,
+                tickRotation: 60,
                 legend: 'Date',
                 legendPosition: 'middle',
                 legendOffset: 60
