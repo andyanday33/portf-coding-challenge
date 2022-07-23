@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState, useEffect } from 'react';
 import useFetch from './useFetch';
 import BeerResponsiveBar from './components/ResponsiveBeerBar';
+import FilterForm from './components/FilterForm';
 
 const queryClient = new QueryClient();
 
@@ -121,6 +122,7 @@ function BarGraph(props) {
   return (
     <div>
       <section id="beer-graph">
+        <FilterForm />
         {finalData.length > 0 && <BeerResponsiveBar data={finalData}/>}
       </section>
       <button onClick={() => changeData()}>B</button>
