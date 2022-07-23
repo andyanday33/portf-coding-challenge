@@ -35,8 +35,10 @@ function BarGraph(props) {
   monthMap.set("11", "Nov");
   monthMap.set("12", "Dec");
   const processedData = new Map();
+  let totalAbv = 0;
   // Group by dates and find ABV for each date
   beers.forEach(beer => {
+    totalAbv += beer.abv;
     const rawDate = beer.first_brewed.split('/');
     let newDate = null;
     if (rawDate.length === 1) {
@@ -57,6 +59,11 @@ function BarGraph(props) {
       });
     }
   })
+
+  // Find percentages
+  processedData.forEach((value, key) => {
+    value.abv = value.abv / totalAbv * 100;
+  });
 
   // Convert the map to an array
   const processedDataArray = [];
