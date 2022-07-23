@@ -81,9 +81,7 @@ function BarGraph(props) {
         return 0;
       }
       );
-
       return processedDataArray;
-  
     }
   }
 
