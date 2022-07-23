@@ -4,7 +4,7 @@ import useFetch from './useFetch';
 const queryClient = new QueryClient();
 
 function Example() {
-  const {isLoading, error, data} = useFetch('https://api.punkapi.com/v2/beers');
+  const {isLoading, error, data} = useFetch('https://api.punkapi.com/v2/beers', 1, 5);
 
   if (isLoading) return 'Loading...';
 
