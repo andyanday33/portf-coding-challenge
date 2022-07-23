@@ -12,11 +12,11 @@ const ResponsiveBeerBar = ({ data }) => (
             'abv',
         ]}
         indexBy='date'
-        margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
-        padding={0.3}
+        margin={{ top: 50, right: 130, bottom: 70, left: 60 }}
+        padding={0.05}
         valueScale={{ type: 'linear' }}
         indexScale={{ type: 'band', round: true }}
-        colors={{ scheme: 'nivo' }}
+        colors={{ scheme: 'category10' }}
         defs={[
             {
                 id: 'dots',
@@ -37,15 +37,17 @@ const ResponsiveBeerBar = ({ data }) => (
                 spacing: 10
             }
         ]}
+        borderWidth={2}
         borderColor={{
             from: 'color',
             modifiers: [
                 [
                     'darker',
-                    1.6
+                    3
                 ]
             ]
         }}
+        enableGridX={true}
         axisTop={null}
         axisRight={null}
         axisBottom={{
@@ -54,7 +56,7 @@ const ResponsiveBeerBar = ({ data }) => (
             tickRotation: 45,
             legend: 'Date',
             legendPosition: 'middle',
-            legendOffset: 45
+            legendOffset: 60
         }}
         axisLeft={{
             tickSize: 5,
@@ -70,8 +72,8 @@ const ResponsiveBeerBar = ({ data }) => (
             from: 'color',
             modifiers: [
                 [
-                    'darker',
-                    1.6
+                    'brighter',
+                    3
                 ]
             ]
         }}
