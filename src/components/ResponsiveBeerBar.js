@@ -51,10 +51,10 @@ const ResponsiveBeerBar = ({ data }) => (
         axisBottom={{
             tickSize: 5,
             tickPadding: 5,
-            tickRotation: 0,
+            tickRotation: 45,
             legend: 'Date',
             legendPosition: 'middle',
-            legendOffset: 32
+            legendOffset: 45
         }}
         axisLeft={{
             tickSize: 5,

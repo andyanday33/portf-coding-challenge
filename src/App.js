@@ -58,7 +58,7 @@ function BarGraph(props) {
         abv: beer.abv,
       });
     }
-  })
+  });
 
   // Find percentages
   processedData.forEach((value, key) => {
