@@ -75,6 +75,15 @@ function BarGraph(props) {
       });
     }
   );
+
+  // Sort the data by date
+  processedDataArray.sort((a, b) => {
+    if(a.date < b.date) return -1;
+    if(a.date > b.date) return 1;
+    return 0;
+  }
+  );
+
   return (
     <div>
       <h1>{beers.length} Beers</h1>
