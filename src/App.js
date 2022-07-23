@@ -63,6 +63,7 @@ function BarGraph(props) {
   // Find percentages
   processedData.forEach((value, key) => {
     value.abv = value.abv / totalAbv * 100;
+    value.abv = value.abv.toFixed(2);
   });
 
   // Convert the map to an array
