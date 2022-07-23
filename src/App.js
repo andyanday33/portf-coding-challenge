@@ -1,25 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import useFetch from './useFetch';
+const queryClient = new QueryClient();
 
-function App() {
+function Example() {
+  const {isLoading, error, data} = useFetch('https://api.punkapi.com/v2/beers');
+
+  if (isLoading) return 'Loading...';
+
+  if (error) return 'An error has occurred: ' + error.message;
+
+  console.log(data);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>{data.length} Beers</h1>
     </div>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Example />
+    </QueryClientProvider>
+  );
+}
