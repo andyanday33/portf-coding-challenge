@@ -10,8 +10,8 @@ function BarGraph(props) {
   const {isLoading, error, data} = useFetch(props.url, 1, 5);
   const [finalData, setFinalData] = useState([]);
 
-  const processData = (data) => {
-    if(data) {
+  const processData = (data, error) => {
+    if(data && !error) {
       // Process the data to extract all beers
       const beers = [];
       console.log(data);
@@ -20,20 +20,7 @@ function BarGraph(props) {
       })
       console.log(beers);
 
-      // Process the dates on beers data array
-      const monthMap = new Map();
-      monthMap.set("01", "Jan");
-      monthMap.set("02", "Feb");
-      monthMap.set("03", "Mar");
-      monthMap.set("04", "Apr");
-      monthMap.set("05", "May");
-      monthMap.set("06", "Jun");
-      monthMap.set("07", "Jul");
-      monthMap.set("08", "Aug");
-      monthMap.set("09", "Sep");
-      monthMap.set("10", "Oct");
-      monthMap.set("11", "Nov");
-      monthMap.set("12", "Dec");
+      
       const processedData = new Map();
       let totalAbv = 0;
       // Group by dates and find ABV for each date
@@ -42,9 +29,9 @@ function BarGraph(props) {
         const rawDate = beer.first_brewed.split('/');
         let newDate = null;
         if (rawDate.length === 1) {
-          newDate = `Jan ${rawDate[0]}`;
+          newDate = `01/${rawDate[0]}`;
         } else {
-          newDate = `${monthMap.get(rawDate[0])} ${rawDate[1]}`;
+          newDate = beer.first_brewed;
         }
         // Find the new ABV
         if (processedData.has(newDate)) {
@@ -76,18 +63,56 @@ function BarGraph(props) {
 
       // Sort the data by date
       processedDataArray.sort((a, b) => {
-        if(a.date < b.date) return -1;
-        if(a.date > b.date) return 1;
+        const dateA = a.date.split('/');
+        const dateB = b.date.split('/');
+        // Compare years
+        if(dateA[1] < dateB[1]) { 
+          return -1;
+        }
+        if(dateA[1] > dateB[1]) {
+          return 1;
+        }
+        // Compare months
+        if(dateA[0] < dateB[0]) {
+          return -1;
+        }
+        if(dateA[0] > dateB[0]) {
+          return 1;
+        }
         return 0;
       }
       );
+
+      // Refactor the dates
+      const monthMap = new Map();
+      monthMap.set("01", "Jan");
+      monthMap.set("02", "Feb");
+      monthMap.set("03", "Mar");
+      monthMap.set("04", "Apr");
+      monthMap.set("05", "May");
+      monthMap.set("06", "Jun");
+      monthMap.set("07", "Jul");
+      monthMap.set("08", "Aug");
+      monthMap.set("09", "Sep");
+      monthMap.set("10", "Oct");
+      monthMap.set("11", "Nov");
+      monthMap.set("12", "Dec");
+      processedDataArray.forEach(data => {
+        data.date = `${monthMap.get(data.date.split('/')[0])} ${data.date.split('/')[1]}`;
+      });
+
       return processedDataArray;
     }
+    return [];
   }
 
   useEffect(() => {
-    setFinalData(processData(data));
-  }, [data]);
+    setFinalData(processData(data, error));
+  }, [data, error]);
+
+  const changeData = () => {
+    setFinalData([{date:'Jan 2019', abv: 10}, ...finalData]);
+  }
 
   if (isLoading) return 'Loading...';
 
@@ -98,6 +123,7 @@ function BarGraph(props) {
       <section id="beer-graph">
         <BeerResponsiveBar data={finalData}/>
       </section>
+      <button onClick={() => changeData()}>B</button>
     </div>
   );
 }

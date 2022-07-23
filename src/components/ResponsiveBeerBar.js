@@ -16,7 +16,6 @@ const ResponsiveBeerBar = ({ data }) => {
             ]}
             indexBy='date'
             margin={{ top: 50, right: 130, bottom: 70, left: 60 }}
-            padding={0.05}
             valueScale={{ type: 'linear' }}
             indexScale={{ type: 'band', round: true }}
             colors={{ scheme: 'category10' }}
