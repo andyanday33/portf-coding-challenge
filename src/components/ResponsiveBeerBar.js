@@ -9,9 +9,9 @@ const ResponsiveBeerBar = ({ data }) => (
     <ResponsiveBar
         data={data}
         keys={[
-            'beer',
+            'abv',
         ]}
-        indexBy='first_brewed'
+        indexBy='date'
         margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
         padding={0.3}
         valueScale={{ type: 'linear' }}
@@ -37,20 +37,6 @@ const ResponsiveBeerBar = ({ data }) => (
                 spacing: 10
             }
         ]}
-        fill={[
-            {
-                match: {
-                    id: 'fries'
-                },
-                id: 'dots'
-            },
-            {
-                match: {
-                    id: 'sandwich'
-                },
-                id: 'lines'
-            }
-        ]}
         borderColor={{
             from: 'color',
             modifiers: [
@@ -66,7 +52,7 @@ const ResponsiveBeerBar = ({ data }) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'country',
+            legend: 'Date',
             legendPosition: 'middle',
             legendOffset: 32
         }}
@@ -74,7 +60,7 @@ const ResponsiveBeerBar = ({ data }) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'food',
+            legend: 'ABV',
             legendPosition: 'middle',
             legendOffset: -40
         }}

@@ -34,21 +34,44 @@ function BarGraph(props) {
   monthMap.set("10", "Oct");
   monthMap.set("11", "Nov");
   monthMap.set("12", "Dec");
-
+  const processedData = new Map();
+  // Group by dates and find ABV for each date
   beers.forEach(beer => {
-    const date = beer.first_brewed.split('/');
-    if (date.length === 1) {
-      beer.first_brewed = `Jan ${date[0]}`;
+    const rawDate = beer.first_brewed.split('/');
+    let newDate = null;
+    if (rawDate.length === 1) {
+      newDate = `Jan ${rawDate[0]}`;
     } else {
-      beer.first_brewed = `${monthMap.get(date[0])} ${date[1]}`;
+      newDate = `${monthMap.get(rawDate[0])} ${rawDate[1]}`;
+    }
+    // Find the new ABV
+    if (processedData.has(newDate)) {
+      const dateBar = processedData.get(newDate);
+      dateBar.beerCount++;
+      dateBar.abv += beer.abv;
+    } else {
+      // Add the new date to the map
+      processedData.set(newDate, {
+        beerCount: 1,
+        abv: beer.abv,
+      });
     }
   })
 
+  // Convert the map to an array
+  const processedDataArray = [];
+  processedData.forEach((value, key) => {
+    processedDataArray.push({
+      date: key,
+      ...value,
+      });
+    }
+  );
   return (
     <div>
       <h1>{beers.length} Beers</h1>
       <section id="beer-graph">
-        <BeerResponsiveBar data={beers}/>
+        <BeerResponsiveBar data={processedDataArray}/>
       </section>
     </div>
   );
