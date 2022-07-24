@@ -3,6 +3,15 @@ import DatePicker from 'react-datepicker';
 
 import "react-datepicker/dist/react-datepicker.css";
 
+/**
+ * A filter form consisting of multiple filter inputs.
+ * Filters the raw data based on the values of the inputs.
+ * 
+ * @param {React.ComponentProps} props a prop object
+ * containing the raw unfiltered data and setState function of the
+ * filtered data.
+ * @returns {JSX.Element} A React component that displays a filter form.
+ */
 export default function FilterForm({ setFilteredData, unfilteredDataRef }) {
   const [startDate, setStartDate] = useState(new Date('Jan 2004'));
   const [endDate, setEndDate] = useState(new Date()); // Today's date

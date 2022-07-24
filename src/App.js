@@ -1,12 +1,21 @@
 import './App.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import useFetch from './useFetch';
 import BeerResponsiveBar from './components/ResponsiveBeerBar';
 import FilterForm from './components/FilterForm';
 
 const queryClient = new QueryClient();
 
+/**
+ * A Bar Graph component consisting of a bar chart
+ * and a filter form.
+ * 
+ * @param {React.ComponentProps} props a prop object containing
+ * the api url for data fetching. 
+ * @returns {JSX.Element} A React component that displays a bar chart with
+ * a filter form.
+ */
 function BarGraph(props) {
   const {isLoading, error, data} = useFetch(props.url, 1, 5);
   const rawProcessedDataRef = useRef([]);
@@ -136,6 +145,12 @@ function BarGraph(props) {
   );
 }
 
+/**
+ * Main App component.
+ * 
+ * @returns {JSX.Element} A React component which is the
+ * root of the DOM tree.
+ */
 export default function App() {
   return (
     <>

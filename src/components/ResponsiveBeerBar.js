@@ -1,10 +1,13 @@
 import { ResponsiveBar } from '@nivo/bar';
+import React from 'react';
 
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
+/**
+ * ResponsiveBar component for rendering a bar chart.
+ * 
+ * @param {React.ComponentProps} props A prop object
+ * containing the data to be displayed in the chart.
+ * @returns {JSX.Element} A React component that displays a bar chart.
+ */
 const ResponsiveBeerBar = ({ data }) => {
     return (
         <ResponsiveBar
