@@ -5,8 +5,6 @@ import useFetch from './useFetch';
 import BeerResponsiveBar from './components/ResponsiveBeerBar';
 import FilterForm from './components/FilterForm';
 
-const queryClient = new QueryClient();
-
 /**
  * A Bar Graph component consisting of a bar chart
  * and a filter form.
@@ -152,6 +150,8 @@ function BarGraph(props) {
  * root of the DOM tree.
  */
 export default function App() {
+  const queryClient = new QueryClient();
+
   return (
     <>
       <QueryClientProvider client={queryClient}>
