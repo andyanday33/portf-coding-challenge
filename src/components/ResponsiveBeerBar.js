@@ -12,6 +12,7 @@ const ResponsiveBeerBar = ({ data }) => {
             keys={[
                 'abv',
             ]}
+            animate={false}
             indexBy='date'
             margin={{ top: 50, right: 130, bottom: 70, left: 60 }}
             valueScale={{ type: 'linear' }}

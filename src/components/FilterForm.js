@@ -11,6 +11,7 @@ export default function FilterForm({ setFilteredData, unfilteredDataRef }) {
         console.log(startDate);
         console.log(endDate);
         if (unfilteredDataRef.current && unfilteredDataRef.current.length > 0) {
+            console.log('filtering data');
             const filteredData = unfilteredDataRef.current.filter(beer => {
                 const date = new Date(beer.date);
                 return date >= startDate && date <= endDate;
