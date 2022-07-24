@@ -20,11 +20,29 @@ export default function FilterForm({ setFilteredData, unfilteredDataRef }) {
         }
 
     }, [startDate, endDate, unfilteredDataRef, setFilteredData]);
+
+    const handleABVFilterChange = (e) => {
+        const abv = e.target.value;
+        const filteredData = unfilteredDataRef.current.filter(beer => {
+            return +beer.abv >= +abv;
+        });
+        setFilteredData(filteredData);
+    }
+
   return (
-    <div id="filter-form">
-        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-        <span> - </span>
-        <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
-    </div>
+    <section class="filter-form">
+        <section class="date-filter">
+            <label>Start Date</label>
+            <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+            <span> - </span>
+            <label>End Date</label>
+            <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
+        </section>
+        <section class="ABV-filter">
+            <label>ABV:</label>
+            <input type="number" onChange={handleABVFilterChange} />
+        </section>
+        
+    </section>
   )
 }

@@ -6,6 +6,11 @@
   padding: 10px;
 }
 
-#filter-form {
+.filter-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.date-filter {
   display: flex;
 }
