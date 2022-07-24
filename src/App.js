@@ -134,7 +134,6 @@ function BarGraph(props) {
         />
         {filteredData.length > 0 && <BeerResponsiveBar data={filteredData}/>}
       </section>
-      <button>B</button>
     </div>
   );
 }
