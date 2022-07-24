@@ -1,6 +1,6 @@
 import './App.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useFetch from './useFetch';
 import BeerResponsiveBar from './components/ResponsiveBeerBar';
 import FilterForm from './components/FilterForm';
@@ -9,7 +9,8 @@ const queryClient = new QueryClient();
 
 function BarGraph(props) {
   const {isLoading, error, data} = useFetch(props.url, 1, 5);
-  const [finalData, setFinalData] = useState([]);
+  const rawProcessedDataRef = useRef([]);
+  const [filteredData, setFilteredData] = useState([]);
 
   const processData = (data, error) => {
     if(data && !error) {
@@ -108,12 +109,17 @@ function BarGraph(props) {
   }
 
   useEffect(() => {
-    setFinalData(processData(data, error));
+    setFilteredData(processData(data, error));
   }, [data, error]);
 
-  const changeData = () => {
-    setFinalData([{date:'Jan 2019', abv: 10}, ...finalData]);
+  // We will set a reference to the raw data so 
+  // that we can use it to reset the filtered data later
+  useEffect(() => {
+    if (rawProcessedDataRef.current.length === 0) {
+      rawProcessedDataRef.current = filteredData;
+    }
   }
+  , [filteredData]);
 
   if (isLoading) return 'Loading...';
 
@@ -123,9 +129,9 @@ function BarGraph(props) {
     <div>
       <section id="beer-graph">
         <FilterForm />
-        {finalData.length > 0 && <BeerResponsiveBar data={finalData}/>}
+        {filteredData.length > 0 && <BeerResponsiveBar data={filteredData}/>}
       </section>
-      <button onClick={() => changeData()}>B</button>
+      <button>B</button>
     </div>
   );
 }

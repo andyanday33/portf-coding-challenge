@@ -6,7 +6,6 @@ import { ResponsiveBar } from '@nivo/bar';
 // website examples showcase many properties,
 // you'll often use just a few of them.
 const ResponsiveBeerBar = ({ data }) => {
-    console.log('render');
     return (
         <ResponsiveBar
             data={data}
