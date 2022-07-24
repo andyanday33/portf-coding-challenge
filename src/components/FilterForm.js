@@ -28,11 +28,8 @@ export default function FilterForm({ setFilteredData, unfilteredDataRef }) {
   }, [startDate, endDate, unfilteredDataRef, setFilteredData]);
 
   const handleABVFilterChange = (e) => {
-    const abv = e.target.value;
+    let abv = e.target.value;
     const filteredData = unfilteredDataRef.current.filter(beer => {
-      if(!abv) {
-        return true;
-      }
       return +beer.abv >= +abv;
     });
     setFilteredData(filteredData);

@@ -1,5 +1,19 @@
 import { ResponsiveBar } from '@nivo/bar';
-import React from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
+
+/**
+ * Helper function to get the previous props.
+ * 
+ * @param {React.ComponentProps} value component props to store
+ * @returns Previous props
+ */
+function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+}
 
 /**
  * ResponsiveBar component for rendering a bar chart.
@@ -8,9 +22,21 @@ import React from 'react';
  * containing the data to be displayed in the chart.
  * @returns {JSX.Element} A React component that displays a bar chart.
  */
-const ResponsiveBeerBar = ({ data }) => {
+const ResponsiveBeerBar = (props) => {
+    // There was an awful visual bug I couldn't fix,
+    // so I am just going to cheat here by forcing a 
+    // conditional re-render.
+    const { data } = props;
+    const prevProps = usePrevious(props);
+    const [key, setKey] = useState(0);
+    useMemo(() => {
+        if (prevProps && data > prevProps.data) {
+            // Force a re-render
+            setKey((prev) => prev + 1);
+        }
+    }, [data, prevProps]);    
     return (
-        <ResponsiveBar
+        <ResponsiveBar key={key}
             data={data}
             keys={[
                 'abv',
@@ -106,8 +132,7 @@ const ResponsiveBeerBar = ({ data }) => {
                 }
             ]}
             role="application"
-            ariaLabel="Nivo bar chart demo"
-            barAriaLabel={function(e){return e.id+": "+e.formattedValue+" in country: "+e.indexValue}}
+            ariaLabel="Beer bar chart"
         />
     )
 }
