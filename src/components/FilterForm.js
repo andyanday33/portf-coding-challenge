@@ -31,10 +31,10 @@ export default function FilterForm({ setFilteredData, unfilteredDataRef }) {
 
 return (
   <section class="filter-form">
+    <h2 style={{gridColumn: '1 / span 2', textAlign: 'center'}}>Filter Data</h2>
     <section class="date-filter">
       <label>Start Date</label>
       <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
-      <span> - </span>
       <label>End Date</label>
       <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
     </section>
