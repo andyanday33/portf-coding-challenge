@@ -128,7 +128,10 @@ function BarGraph(props) {
   return (
     <div>
       <section id="beer-graph">
-        <FilterForm />
+        <FilterForm 
+        unfilteredDataRef={rawProcessedDataRef}
+        setFilteredData={setFilteredData}
+        />
         {filteredData.length > 0 && <BeerResponsiveBar data={filteredData}/>}
       </section>
       <button>B</button>
