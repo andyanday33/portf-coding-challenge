@@ -16,11 +16,9 @@ function BarGraph(props) {
     if(data && !error) {
       // Process the data to extract all beers
       const beers = [];
-      console.log(data);
       data.forEach(({ value }) => {
         beers.push(...value);
-      })
-      console.log(beers);
+      });
 
       
       const processedData = new Map();
