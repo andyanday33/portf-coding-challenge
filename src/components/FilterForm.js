@@ -25,7 +25,6 @@ export default function FilterForm({ setFilteredData, unfilteredDataRef }) {
     const abv = e.target.value;
     const filteredData = unfilteredDataRef.current.filter(beer => {
       if(!abv) {
-        console.log('true');
         return true;
       }
       return +beer.abv >= +abv;
