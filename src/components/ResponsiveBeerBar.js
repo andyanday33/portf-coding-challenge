@@ -2,7 +2,7 @@ import { ResponsiveBar } from '@nivo/bar';
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 
 /**
- * Helper function to get the previous props.
+ * Helper hook to get the previous props.
  * 
  * @param {React.ComponentProps} value component props to store
  * @returns Previous props
