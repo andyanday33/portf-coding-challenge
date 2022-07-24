@@ -9,13 +9,13 @@ Then, uses Nivo (https://nivo.rocks/) plot, using a bar graph, shows the sum per
 
 To begin with, run
 
-`Yarn install`
+`yarn install`
 
 to install project dependencies. After installing dependencies,
 you could use the scripts inside the table below.
 
 | Script      | Description |
 | :---        |    :---   |     
-| `Yarn Start`      | Starts the application in the development mode. | 
-| `Yarn Build`   | Generates a production build of the application | 
+| `yarn start`      | Starts the application in the development mode. | 
+| `yarn build`   | Generates a production build of the application | 
 
