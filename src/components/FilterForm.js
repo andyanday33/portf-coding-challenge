@@ -33,15 +33,15 @@ export default function FilterForm({ setFilteredData, unfilteredDataRef }) {
   }
 
 return (
-  <section class="filter-form">
+  <section className="filter-form">
     <h2 style={{gridColumn: '1 / span 2', textAlign: 'center'}}>Filter Data</h2>
-    <section class="date-filter">
+    <section className="date-filter">
       <label>Start Date</label>
       <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
       <label>End Date</label>
       <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
     </section>
-    <section class="ABV-filter">
+    <section className="ABV-filter">
       <label>ABV:</label>
       <input type="number" onChange={handleABVFilterChange} />
     </section>
